@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kamrul Hasan | Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #222;
+      --accent: #0077cc;
+      --card: #f9f9f9;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #eee;
+      --accent: #ff9800;
+      --card: #1f1f1f;
+    }
+    body.rainbow {
+      --bg: linear-gradient(to right, #ff9a9e, #fad0c4);
+      --text: #000;
+      --accent: #e91e63;
+      --card: rgba(255,255,255,0.85);
+    }
+    body {
+      margin: 0;
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+      transition: all 0.5s ease;
+    }
+    header, footer {
+      background: var(--accent);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    nav {
+      background: var(--card);
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    select {
+      margin: 0.5rem;
+      padding: 0.4rem;
+      border-radius: 5px;
+    }
+    main {
+      padding: 2rem;
+    }
+    section {
+      background: var(--card);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.7rem 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #clock {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+    #loader {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+    }
+    #loader div {
+      border:6px solid #eee;
+      border-top:6px solid var(--accent);
+      border-radius:50%;
+      width:60px; height:60px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="loader"><div></div></div>
+
+  <header>
+    <h1>Kamrul Hasan</h1>
+    <p>Dreaming to be a Successful Developer 🚀</p>
+    <div>
+      <label for="theme">Theme:</label>
+      <select id="theme">
+        <option value="">☀️ Light</option>
+        <option value="dark">🌙 Dark</option>
+        <option value="rainbow">🌈 Rainbow</option>
+      </select>
+      <div id="clock">Loading time...</div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#result">SSC Result</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section id="about">
+      <h2>🧑‍💻 About Me</h2>
+      <p>Name: <strong>Kamrul Hasan</strong></p>
+      <p>Hobby: <em>Creating new things</em></p>
+      <p>Goal: <em>To become a successful developer</em></p>
+    </section>
+
+    <section id="result">
+      <h2>📊 SSC Result Viewer</h2>
+      <p><strong>Roll:</strong> 772332</p>
+      <p><strong>Board:</strong> Technical</p>
+      <p><strong>GPA:</strong> 4.86</p>
+    </section>
+
+    <section id="gallery">
+      <h2>🖼️ Image Gallery</h2>
+      <div class="gallery">
+        <div>
+          <img src="https://via.placeholder.com/300x200.png?text=Green+Loop+Productions" alt="Logo"/>
+          <p>Green Loop Logo</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>📬 Contact Me</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required/>
+        <input type="email" placeholder="Your Email" required/>
+        <textarea rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Kamrul. All rights reserved.</p>
+  </footer>
+
+  <script>
+    window.onload = () => {
+      setTimeout(() => document.getElementById("loader").style.display = "none", 800);
+    };
+
+    // Clock
+    function updateClock() {
+      document.getElementById("clock").textContent =
+        new Date().toLocaleTimeString("en-BD", { hour12: true });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Theme switch
+    document.getElementById("theme").addEventListener("change", function() {
+      document.body.className = this.value;
+    });
+  </script>
+</body>
+</html>
